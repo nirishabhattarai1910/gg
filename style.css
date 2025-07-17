@@ -1,0 +1,527 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility Classes */
+        .flex {
+            display: flex;
+            align-items: center;
+        }
+
+        .between {
+            justify-content: space-between;
+        }
+
+        /* Header Section Styling */
+        header {
+            width: 100%;
+            background-color: #fff; /* Default background, overridden by top-header and section */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Top Header Bar Styling */
+        .top-header {
+            background-color: #2c3e50; /* Dark blue-grey for a professional look */
+            color: #ecf0f1; /* Light text color */
+            padding: 8px 20px;
+            font-size: 0.85em;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .top-header .left-icon-side {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Gap between contact items */
+            flex-wrap: wrap; /* Allow contact items to wrap */
+        }
+
+        .top-header .left-icon-side i {
+            color: #3CB371; /* Green icon color from logo */
+            margin-right: 5px;
+        }
+
+        .top-header .left-icon-side span {
+            white-space: nowrap; /* Prevent text wrapping for contact info */
+        }
+
+        .top-header .right-icon-side {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Gap between social icons */
+        }
+
+        .top-header .right-icon-side .icon-link {
+            color: #ecf0f1; /* Light icon color */
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .top-header .right-icon-side .icon-link:hover {
+            color: #3CB371; /* Green hover color for social icons */
+        }
+
+        /* Navbar Section Styling (from previous steps) */
+        section {
+            background-color: #F0FFF0; /* A very light, subtle green to complement the logo */
+            padding: 10px 20px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: nowrap; /* Prevent wrapping for main navbar items */
+        }
+
+        /* Left Logo and Navlinks */
+        .navlink-left-logo {
+            gap: 20px; /* Gap between left logo and desktop navlinks */
+        }
+
+        .left-logo img {
+            height: 60px; /* Increased logo size for desktop */
+            
+        }
+
+        /* Main Navigation Links */
+        .navlinks {
+            gap: 25px;
+            font-weight: 500;
+        }
+
+        .navlinks li a {
+            padding: 10px 0;
+            display: block;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .navlinks li a:hover {
+            color: #3CB371; /* MediumSeaGreen - a vibrant green from the logo's palette */
+        }
+
+        /* Dropdown Styling */
+        .dropdown {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .dropdown .arrow {
+            margin-left: 5px;
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .sub-menu {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            min-width: 220px;
+            z-index: 1000;
+            border-radius: 8px;
+            overflow: hidden; /* Ensures rounded corners apply to content */
+        }
+
+        /* Show sub-menu when dropdown has 'active' class (for both desktop and mobile) */
+        .dropdown.active > .sub-menu {
+            display: block;
+        }
+
+        .sub-menu li a {
+            padding: 12px 15px;
+            color: #555;
+            white-space: nowrap; /* Prevent text wrapping */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .sub-menu li a:hover {
+            background-color: #E6F5E6; /* Very light green background on hover */
+            color: #3CB371; /* MediumSeaGreen text on hover */
+        }
+
+        /* Right Logo */
+        .right-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: right;
+            font-size: 0.7em;
+            color: #666; /* Keeping a dark grey for readability */
+        }
+
+        .right-logo img {
+            height: 40px; /* Adjust as needed */
+            
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none; /* Hidden by default on desktop */
+            font-size: 1.8em;
+            cursor: pointer;
+            color: #3CB371; /* Hamburger icon color to logo green */
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Mobile Navigation Menu */
+        .mobile-navlinks {
+            position: fixed;
+            top: 0;
+            left: -300px; /* Hidden off-screen to the left */
+            width: 280px; /* Width of the mobile menu */
+            height: 100%;
+            background-color: #fff;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2); /* Adjusted shadow for left slide */
+            z-index: 1001;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: left 0.3s ease-in-out;
+            overflow-y: auto; /* Enable scrolling for long menus */
+            border-radius: 0 8px 8px 0;
+        }
+
+        .mobile-navlinks.active {
+            left: 0; /* Slide in from left */
+        }
+
+        .mobile-navlinks .close-btn {
+            align-self: flex-end; /* Keep close button on the right */
+            font-size: 2em;
+            cursor: pointer;
+            color: #3CB371; /* Close button color to logo green */
+            margin-bottom: 20px;
+        }
+
+        .mobile-navlinks li {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .mobile-navlinks li a {
+            padding: 12px 10px;
+            display: block;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .mobile-navlinks li a:hover {
+            background-color: #E6F5E6; /* Lighter green background on hover */
+            color: #3CB371; /* Green text on hover */
+        }
+
+        .mobile-navlinks .sub-menu {
+            position: static; /* Remove absolute positioning for mobile */
+            display: none;
+            box-shadow: none;
+            background-color: #f9f9f9;
+            width: 100%;
+            padding-left: 15px;
+            margin-top: 5px;
+            border-radius: 0;
+        }
+
+        .mobile-navlinks .sub-menu li a {
+            padding: 10px 10px;
+            font-size: 0.95em;
+            border-bottom: none;
+        }
+
+        /* Main Section - Banner Styling */
+        .main-banner {
+            position: relative;
+            width: 100%;
+            height: 450px; /* Adjusted height for the banner */
+            background-image: url('image/banner.jpg'); /* Sample banner image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left; /* Align text left */
+            color: #fff; /* White text for contrast */
+            overflow: hidden; /* Ensures overlay doesn't spill */
+            padding-left: 5%; /* Add padding to push content from the left edge */
+        }
+
+        .main-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Updated: Semi-transparent green gradient overlay from logo */
+            background: linear-gradient(to right, rgba(60, 179, 113, 0.7), rgba(60, 179, 113, 0.3)); /* Green gradient */
+            z-index: 1; /* Ensure overlay is above background image but below text */
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2; /* Ensure text is above the overlay */
+            padding: 20px;
+            max-width: 500px; /* Constrain width of text content */
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .banner-content .subtitle {
+            background-color: #fff; /* White background for subtitle */
+            color: #333; /* Dark text for subtitle */
+            padding: 5px 15px;
+            font-size: 0.9em;
+            font-weight: 600;
+            border-left: 3px solid #3CB371; /* Green border on left */
+            display: inline-block; /* To make padding and border apply correctly */
+            align-self: flex-start; /* Align to the start of the flex container */
+            border-radius: 4px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Subtle shadow for subtitle */
+        }
+
+        .banner-content .main-heading {
+            background-color: rgba(105, 105, 105, 0.7); /* DimGray with transparency for main heading background */
+            color: #fff; /* White text for main heading */
+            padding: 10px 20px;
+            font-size: 2.3em; /* Adjusted font size */
+            font-weight: 700;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            align-self: flex-start; /* Align to the start of the flex container */
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7); /* More prominent text shadow */
+        }
+
+        .banner-content .description {
+            font-size: 1.1em;
+            font-weight: 400;
+            color: #f0f0f0; /* Lighter white for description */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* More prominent text shadow */
+            line-height: 1.5;
+        }
+
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 992px) {
+            .navlinks {
+                display: none; /* Hide desktop navlinks */
+            }
+
+            .hamburger {
+                display: block; /* Show hamburger icon */
+                margin-right: 15px; /* Added gap between hamburger and left logo */
+            }
+
+            .navbar {
+                flex-wrap: nowrap; /* Prevent wrapping for main navbar items */
+            }
+
+            .navlink-left-logo {
+                flex-grow: 1; /* Allow left section to take available space */
+            }
+
+            .left-logo img {
+                height: 50px; /* Adjusted logo size for tablet view */
+            }
+
+            .right-logo {
+                display: flex; /* Show right logo */
+                gap: 5px; /* Reduce gap for mobile */
+                font-size: 0.7em; /* Smaller text for mobile */
+                text-align: center; /* Center text for better fit */
+                flex-shrink: 0; /* Prevent shrinking too much */
+            }
+
+            .right-logo img {
+                height: 30px; /* Smaller image for mobile */
+            }
+
+            /* Top header adjustments for smaller screens */
+            .top-header {
+                flex-direction: column; /* Stack items vertically */
+                align-items: flex-start; /* Align items to the start */
+                gap: 8px; /* Reduce gap between stacked items */
+                padding: 10px 15px;
+            }
+
+            .top-header .left-icon-side,
+            .top-header .right-icon-side {
+                width: 100%; /* Take full width */
+                justify-content: flex-start; /* Align contents to left */
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .top-header .left-icon-side span {
+                font-size: 0.9em; /* Slightly larger for readability */
+            }
+             /* Banner adjustments for tablet */
+            .main-banner {
+                height: 350px; /* Shorter banner for tablets */
+                padding-left: 3%;
+            }
+            .banner-content {
+                max-width: 400px;
+            }
+            .banner-content .main-heading {
+                font-size: 2.2em;
+                padding: 8px 15px;
+            }
+            .banner-content .description {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: row; /* Keep items in a row */
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .navlink-left-logo {
+                width: auto; /* Adjust width */
+                flex-grow: 1;
+            }
+
+            .left-logo img {
+                height: 45px; /* Adjusted logo size for smaller tablet view */
+            }
+
+            .right-logo {
+                font-size: 0.65em; /* Even smaller text */
+                gap: 3px;
+            }
+
+            .right-logo img {
+                height: 25px; /* Even smaller image */
+            }
+              /* Banner adjustments for smaller tablets/large phones */
+            .main-banner {
+                height: 300px;
+                padding-left: 2%;
+            }
+            .banner-content {
+                max-width: 350px;
+                padding: 15px;
+            }
+            .banner-content .main-heading {
+                font-size: 1.8em;
+                padding: 7px 12px;
+            }
+            .banner-content .description {
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 8px 15px;
+            }
+
+            .left-logo img {
+                height: 40px; /* Adjusted logo size for mobile view */
+            }
+
+            .hamburger {
+                font-size: 1.5em;
+                margin-right: 10px; /* Slightly smaller gap */
+            }
+
+            .mobile-navlinks {
+                width: 264px; /* Slightly smaller mobile menu */
+            }
+            .right-logo {
+                font-size: 0.4em; /* Smallest text */
+            }
+            .right-logo img {
+                height: 20px; /* Smallest image */
+            }
+
+            .top-header .left-icon-side {
+               
+                align-items: flex-start;
+                gap: 5px;
+            }
+            .top-header .left-icon-side span {
+                font-size: 0.85em;
+            }
+
+            /* Banner adjustments for mobile */
+            .main-banner {
+                height: 250px; /* Shorter banner for mobile */
+                padding-left: 5%; /* Keep some padding */
+                justify-content: center; /* Center content horizontally on very small screens */
+                text-align: center; /* Center text */
+            }
+            .banner-content {
+                max-width: 100%; /* Take more width on small screens */
+                padding: 10px;
+                text-align: left; /* Center items for text-align: center */
+            }
+            .banner-content .subtitle {
+                font-size: 0.4em;
+                padding: 4px 10px;
+            }
+            .banner-content .main-heading {
+                font-size: 1.1em;
+                padding: 6px 10px;
+            }
+            .banner-content .description {
+                font-size: 0.85em;
+            }
+
+            
+        }
